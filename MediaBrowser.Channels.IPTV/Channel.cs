@@ -10,7 +10,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using MediaBrowser.Model.Reflection;
 using MediaBrowser.Model.Dto;
 
 namespace MediaBrowser.Channels.IPTV
@@ -18,12 +17,10 @@ namespace MediaBrowser.Channels.IPTV
     class Channel : IChannel, IHasCacheKey
     {
         private readonly ILogger _logger;
-        private IAssemblyInfo _assemblyInfo;
 
-        public Channel(ILogManager logManager, IAssemblyInfo assemblyInfo)
+        public Channel(ILogManager logManager)
         {
             _logger = logManager.GetLogger(GetType().Name);
-            _assemblyInfo = assemblyInfo;
         }
 
         public string DataVersion
@@ -133,7 +130,7 @@ namespace MediaBrowser.Channels.IPTV
                         {
                             Format = ImageFormat.Png,
                             HasImage = true,
-                            Stream = _assemblyInfo.GetManifestResourceStream(GetType(), path)
+                            Stream = GetType().Assembly.GetManifestResourceStream(path)
                         });
                     }
                 default:
