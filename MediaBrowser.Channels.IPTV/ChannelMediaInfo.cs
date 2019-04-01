@@ -38,7 +38,6 @@ namespace MediaBrowser.Channels.IPTV
 
         public string Id { get; set; }
 
-        public bool ReadAtNativeFramerate { get; set; }
         public bool SupportsDirectPlay { get; set; }
 
         public ChannelMediaInfo()
@@ -65,7 +64,6 @@ namespace MediaBrowser.Channels.IPTV
                 RunTimeTicks = RunTimeTicks,
                 Name = id,
                 Id = id,
-                ReadAtNativeFramerate = ReadAtNativeFramerate,
                 SupportsDirectStream = Protocol == MediaProtocol.Http && !string.IsNullOrWhiteSpace(Container) && !string.Equals(Container, "hls", StringComparison.OrdinalIgnoreCase),
                 SupportsDirectPlay = SupportsDirectPlay,
                 IsRemote = true
