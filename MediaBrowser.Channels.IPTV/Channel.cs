@@ -14,9 +14,19 @@ using MediaBrowser.Model.Dto;
 
 namespace MediaBrowser.Channels.IPTV
 {
-    class Channel : IChannel, IHasCacheKey
+    class Channel : IChannel, IHasCacheKey, IHasChangeEvent
     {
         private readonly ILogger _logger;
+
+        public event EventHandler ContentChanged;
+
+        public void OnContentChanged()
+        {
+            if (ContentChanged != null)
+            {
+                ContentChanged(this, EventArgs.Empty);
+            }
+        }
 
         public Channel(ILogManager logManager)
         {

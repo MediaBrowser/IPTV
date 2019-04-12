@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using MediaBrowser.Channels.IPTV.Configuration;
 using MediaBrowser.Common.Configuration;
 using MediaBrowser.Common.Plugins;
-using MediaBrowser.Model.Logging;
+using MediaBrowser.Controller.Channels;
 using MediaBrowser.Model.Plugins;
 using MediaBrowser.Model.Serialization;
 using System.IO;
@@ -16,12 +16,13 @@ namespace MediaBrowser.Channels.IPTV
     /// </summary>
     public class Plugin : BasePlugin<PluginConfiguration>, IHasWebPages, IHasThumbImage
     {
-        public static ILogger Logger { get; set; }
+        private IChannelManager _channelManager;
 
-        public Plugin(IApplicationPaths applicationPaths, IXmlSerializer xmlSerializer)
+        public Plugin(IApplicationPaths applicationPaths, IXmlSerializer xmlSerializer, IChannelManager channelManager)
             : base(applicationPaths, xmlSerializer)
         {
             Instance = this;
+            _channelManager = channelManager;
         }
 
         public IEnumerable<PluginPageInfo> GetPages()
@@ -83,5 +84,11 @@ namespace MediaBrowser.Channels.IPTV
         /// <value>The instance.</value>
         public static Plugin Instance { get; private set; }
 
+        public override void UpdateConfiguration(BasePluginConfiguration configuration)
+        {
+            base.UpdateConfiguration(configuration);
+
+            _channelManager.GetChannel<Channel>().OnContentChanged();
+        }
     }
 }
