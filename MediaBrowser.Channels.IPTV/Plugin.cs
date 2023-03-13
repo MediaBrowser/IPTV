@@ -33,6 +33,11 @@ namespace MediaBrowser.Channels.IPTV
                 {
                     Name = "iptv",
                     EmbeddedResourcePath = GetType().Namespace + ".Configuration.configPage.html"
+                },
+                new PluginPageInfo
+                {
+                    Name = "iptvjs",
+                    EmbeddedResourcePath = GetType().Namespace + ".Configuration.configPage.js"
                 }
             };
         }

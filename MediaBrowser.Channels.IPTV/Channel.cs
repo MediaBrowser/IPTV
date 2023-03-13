@@ -139,7 +139,6 @@ namespace MediaBrowser.Channels.IPTV
                         return Task.FromResult(new DynamicImageResponse
                         {
                             Format = ImageFormat.Png,
-                            HasImage = true,
                             Stream = GetType().Assembly.GetManifestResourceStream(path)
                         });
                     }
