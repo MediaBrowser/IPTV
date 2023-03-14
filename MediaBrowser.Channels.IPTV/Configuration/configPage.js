@@ -1,4 +1,4 @@
-﻿define(['baseView', 'loading', 'emby-input', 'emby-select', 'emby-button', 'emby-checkbox', 'emby-scroller', 'emby-select'], function (BaseView, loading) {
+﻿define(['baseView', 'loading', 'emby-input', 'emby-select', 'emby-button', 'emby-checkbox', 'emby-scroller', 'emby-select', 'flexStyles'], function (BaseView, loading) {
     'use strict';
 
     function View(view, params) {
@@ -79,7 +79,7 @@
 
             var stream = streams[i];
 
-            html += '<div class="listItem">';
+            html += '<div class="listItem listItem-border">';
 
             html += '<i class="listItemIcon md-icon">live_tv</i>';
 

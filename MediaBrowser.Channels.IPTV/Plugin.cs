@@ -32,7 +32,9 @@ namespace MediaBrowser.Channels.IPTV
                 new PluginPageInfo
                 {
                     Name = "iptv",
-                    EmbeddedResourcePath = GetType().Namespace + ".Configuration.configPage.html"
+                    EmbeddedResourcePath = GetType().Namespace + ".Configuration.configPage.html",
+                    EnableInMainMenu = true,
+                    MenuIcon = "dvr"
                 },
                 new PluginPageInfo
                 {
